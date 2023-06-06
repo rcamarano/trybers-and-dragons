@@ -19,12 +19,12 @@ class PVE extends Battle {
     return this._monsters;
   }
 
-  private playerAtk(monstersAlive: SimpleFighter[]): void {
-    this.player01.attack(monstersAlive[0]);
+  private playerAtk(monsterLife: SimpleFighter[]): void {
+    this.player01.attack(monsterLife[0]);
   }
 
-  private monsterAtk(monstersAlive: SimpleFighter[]): void {
-    monstersAlive.forEach((monster) => {
+  private monsterAtk(monsterLife: SimpleFighter[]): void {
+    monsterLife.forEach((monster) => {
       if (this.player01.lifePoints > 0) {
         monster.attack(this._player01); 
       }
@@ -33,15 +33,15 @@ class PVE extends Battle {
 
   fight(): number {
     const { player01, monsters } = this;
-    let monstersAlive = this.monsters;
+    let monsterLife = this.monsters;
 
     while (
       player01.lifePoints > 0
       && monsters.some(({ lifePoints }) => lifePoints > 0)
     ) {
-      this.playerAtk(monstersAlive);
-      this.monsterAtk(monstersAlive);
-      monstersAlive = monsters.filter(({ lifePoints }) => lifePoints > 0);
+      this.playerAtk(monsterLife);
+      this.monsterAtk(monsterLife);
+      monsterLife = monsters.filter(({ lifePoints }) => lifePoints > 0);
     }
 
     return super.fight();
