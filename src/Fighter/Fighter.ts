@@ -1,4 +1,5 @@
 import Energy from '../Energy';
+// import SimpleFighter from './SimpleFighter';
 
 interface Fighter {
   lifePoints: number;
